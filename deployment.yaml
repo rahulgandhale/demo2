@@ -1,5 +1,5 @@
- apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
-    kind: Deployment
+ apiVersion: apps/v9 # for versions before 1.9.0 use apps/v1beta2
+    kind: Replication
     metadata:
       name: jenkins
     spec:
@@ -16,7 +16,7 @@
           - name: tomcat-jenkins
             image: rahulgandhale/myweb2:latest
             ports:
-            - containerPort: 80
+            - containerPort: 8080
     # Service
     apiVersion: v1
     kind: Service
@@ -27,7 +27,7 @@
         app: tomcat
       ports:
       - protocol: TCP
-        port: 80
-        targetPort: 80
-        nodePort: 31011
+        port: 8080
+        targetPort: 8080
+        nodePort: 8001
       type: NodePort
