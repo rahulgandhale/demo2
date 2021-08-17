@@ -1,1 +1,33 @@
-
+apiVersion: apps/v9 # for versions before 1.9.0 use apps/v1beta2
+    kind: Replication
+    metadata:
+      name: tomcat
+    spec:
+      selector:
+        matchLabels:
+          app: tomcat
+      replicas: 2 # tells deployment to run 2 pods matching the template
+      template:
+        metadata:
+          labels:
+            app: tomcat
+        spec:
+          containers:
+          - name: tomcat-jenkins
+            image: rahulgandhale/myweb2:latest
+            ports:
+            - containerPort: 8080
+    # Service
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: jenkins
+    spec:
+      selector:
+        app: tomcat
+      ports:
+      - protocol: TCP
+        port: 8080
+        targetPort: 8080
+        nodePort: 8001
+      type: NodePort
