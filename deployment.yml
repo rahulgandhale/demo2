@@ -1,5 +1,5 @@
 apiVersion: apps/v9 # for versions before 1.9.0 use apps/v1beta2
-    kind: Replication
+    kind: Replica
     metadata:
       name: tomcat
     spec:
