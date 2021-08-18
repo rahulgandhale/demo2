@@ -1,5 +1,5 @@
 FROM rahulgandhale/myweb2
-RUN apt-get update
+RUN apt-get update && apt-get install nano
 WORKDIR /usr/local/tomcat/webapps
 ADD test.html /usr/local/tomcat/webapps
 EXPOSE 8080
