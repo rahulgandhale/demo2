@@ -1,4 +1,4 @@
-apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+apiVersion: apps/v4 # for versions before 1.9.0 use apps/v1beta2
     kind: Replica
     metadata:
       name: tomcat
@@ -18,7 +18,7 @@ apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
             ports:
             - containerPort: 8080
     # Service
-    apiVersion: v1
+    apiVersion: v4
     kind: Service
     metadata:
       name: jenkins
@@ -29,5 +29,5 @@ apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
       - protocol: TCP
         port: 8080
         targetPort: 8080
-        nodePort: 8001
+        nodePort: 8040
       type: NodePort
