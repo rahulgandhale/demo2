@@ -1,32 +1,32 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: Replication
 metadata:
-  name: bb-demo
+  name: rahulgandhale-myweb2
   namespace: default
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      bb: web
+    rahulgandhale: myweb2
   template:
     metadata:
       labels:
-        bb: web
+        rahulgandhale: myweb2
     spec:
       containers:
-      - name: bb-site
+      - name:  rahulgandhale-myweb2
         image: rahulgandhale/myweb2
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: bb-entrypoint
+  name: myweb2-entrypoint
   namespace: default
 spec:
   type: NodePort
   selector:
-    bb: web
+   rahulgandhale: web
   ports:
   - port: 8080
     targetPort: 8080
-    nodePort: 30001
+    nodePort: 8002
